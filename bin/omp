@@ -1,0 +1,12 @@
+#!/data/data/com.termux/files/usr/bin/bash
+set -euo pipefail
+export PREFIX="${PREFIX:-/data/data/com.termux/files/usr}"
+# Resolve the installation, including when invoked via $PREFIX/bin/omp.
+root="$(dirname "$(dirname "$(realpath "${BASH_SOURCE[0]}")")")"
+case "${1:-}" in
+    update|doctor|port-version)
+        exec "$PREFIX/bin/python" "$root/lib/omp_termux.py" "$@"
+        ;;
+esac
+unset LD_PRELOAD LD_LIBRARY_PATH
+exec "$PREFIX/bin/bash" "$PREFIX/opt/glibc-runner/glibc-runner.sh" "$root/downloads/omp" "$@"

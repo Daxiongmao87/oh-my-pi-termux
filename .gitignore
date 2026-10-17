@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+downloads/
+*.log
+*.node
+*.bin
+last-update.json
+update.lock
